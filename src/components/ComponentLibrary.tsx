@@ -146,8 +146,7 @@ const ComponentLibrary = () => {
               >
                 <Card className="overflow-hidden border-0">
                   <CardContent className="p-6 bg-black/40 backdrop-blur-xl relative">
-                    <div className="absolute inset-0 bg-gradient-to-br opacity-10 group-hover:opacity-20 transition-opacity duration-500"
-                         className={component.color} />
+                    <div className={`absolute inset-0 bg-gradient-to-br opacity-10 group-hover:opacity-20 transition-opacity duration-500 ${component.color}`} />
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center space-x-3">
                         <div className="text-2xl">{component.icon}</div>

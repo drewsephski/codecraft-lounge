@@ -22,6 +22,45 @@ const ComponentLibrary = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  const componentData = [
+    {
+      title: "Tailwind Components",
+      description: "Pre-built UI components with utility-first CSS framework",
+      icon: "✨",
+      color: "from-blue-500/50 to-cyan-400/50"
+    },
+    {
+      title: "React Components",
+      description: "Modern UI components for React applications",
+      icon: "⚛️",
+      color: "from-cyan-500/50 to-blue-400/50"
+    },
+    {
+      title: "Vue Components",
+      description: "Progressive framework components for modern web",
+      icon: "💚",
+      color: "from-emerald-500/50 to-green-400/50"
+    },
+    {
+      title: "Svelte Components",
+      description: "Cybernetically enhanced web components",
+      icon: "🔥",
+      color: "from-orange-500/50 to-red-400/50"
+    },
+    {
+      title: "Angular Components",
+      description: "Enterprise-ready Angular UI components",
+      icon: "🅰️",
+      color: "from-red-500/50 to-pink-400/50"
+    },
+    {
+      title: "Solid Components",
+      description: "Simple and performant component library",
+      icon: "💎",
+      color: "from-indigo-500/50 to-purple-400/50"
+    }
+  ];
+
   const categories = [
     {
       title: "Getting Started",
@@ -54,7 +93,7 @@ const ComponentLibrary = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-[#1A1F2C] text-foreground">
       {/* Mouse follower */}
       <motion.div
         className="fixed w-64 h-64 rounded-full pointer-events-none z-0 opacity-20 bg-primary"
@@ -95,28 +134,33 @@ const ComponentLibrary = () => {
             animate="show"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"
           >
-            {[1, 2, 3, 4, 5, 6].map((index) => (
+            {componentData.map((component, index) => (
               <motion.div
                 key={index}
                 variants={item}
-                whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                whileHover={{ 
+                  scale: 1.02, 
+                  transition: { duration: 0.2 },
+                }}
+                className="relative group"
               >
-                <Card className="group overflow-hidden gradient-border">
-                  <CardContent className="p-6 glass-effect relative">
+                <Card className="overflow-hidden border-0">
+                  <CardContent className="p-6 bg-black/40 backdrop-blur-xl relative">
+                    <div className="absolute inset-0 bg-gradient-to-br opacity-10 group-hover:opacity-20 transition-opacity duration-500"
+                         className={component.color} />
                     <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center space-x-2">
-                        <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center">
-                          <Star className="h-4 w-4 text-primary" />
-                        </div>
-                        <h3 className="font-semibold">Component {index}</h3>
+                      <div className="flex items-center space-x-3">
+                        <div className="text-2xl">{component.icon}</div>
+                        <h3 className="font-semibold text-white">{component.title}</h3>
                       </div>
-                      <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:translate-x-1 transition-transform" />
+                      <ChevronRight className="h-4 w-4 text-white/70 group-hover:translate-x-1 transition-transform" />
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                      Beautiful, reusable components built with Radix UI and Tailwind CSS.
+                    <p className="text-sm text-white/80">
+                      {component.description}
                     </p>
                   </CardContent>
                 </Card>
+                <div className="absolute -inset-[1px] bg-gradient-to-r from-primary/50 to-secondary/50 rounded-lg opacity-0 group-hover:opacity-100 -z-10 blur-sm transition-opacity duration-500" />
               </motion.div>
             ))}
           </motion.div>

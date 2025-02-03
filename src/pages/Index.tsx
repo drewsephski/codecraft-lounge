@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import AnnouncementBar from "../components/AnnouncementBar";
 import Hero from "../components/Hero";
+import ComponentLibrary from "../components/ComponentLibrary";
 
 const Index = () => {
   return (
@@ -13,6 +14,7 @@ const Index = () => {
       <AnnouncementBar />
       <Navbar />
       <Hero />
+      <ComponentLibrary />
     </motion.div>
   );
 };

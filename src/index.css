@@ -42,16 +42,16 @@
 }
 
 .glass-effect {
-  @apply backdrop-blur-md bg-opacity-20 bg-white/5 border border-white/10;
+  @apply backdrop-blur-md bg-opacity-20 bg-white/5 border border-white/10 transition-all duration-300;
 }
 
 .gradient-border {
-  @apply relative rounded-lg p-[1px] bg-gradient-to-r from-primary/50 to-secondary/50;
+  @apply relative rounded-xl p-[1px] bg-gradient-to-r from-primary/50 to-secondary/50 transition-all duration-300;
 }
 
 .gradient-border::before {
   content: "";
-  @apply absolute inset-0 rounded-lg bg-gradient-to-r from-primary/50 to-secondary/50 opacity-0 transition-opacity duration-300;
+  @apply absolute inset-0 rounded-xl bg-gradient-to-r from-primary/50 to-secondary/50 opacity-0 transition-opacity duration-300;
 }
 
 .gradient-border:hover::before {
@@ -81,27 +81,6 @@
   opacity: 1;
 }
 
-.card-hover-effect {
-  transition: all 0.3s ease;
-}
-
-.card-hover-effect:hover {
-  transform: translateY(-5px);
-}
-
-.gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
 .component-card {
   position: relative;
   overflow: hidden;
@@ -117,7 +96,7 @@
   transition: opacity 0.3s ease;
   z-index: -1;
   border-radius: inherit;
-  filter: blur(8px);
+  filter: blur(12px);
 }
 
 .component-card:hover::before {
@@ -130,4 +109,13 @@
 
 .section-gradient {
   background: linear-gradient(180deg, #12151c 0%, #0a0c11 100%);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }

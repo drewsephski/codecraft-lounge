@@ -27,37 +27,43 @@ const ComponentLibrary = () => {
       title: "Tailwind Components",
       description: "Pre-built UI components with utility-first CSS framework",
       icon: "✨",
-      color: "from-blue-500/50 to-cyan-400/50"
+      gradient: "from-blue-500 to-cyan-400",
+      shadowColor: "rgba(59, 130, 246, 0.5)"
     },
     {
       title: "React Components",
       description: "Modern UI components for React applications",
       icon: "⚛️",
-      color: "from-cyan-500/50 to-blue-400/50"
+      gradient: "from-cyan-500 to-blue-400",
+      shadowColor: "rgba(6, 182, 212, 0.5)"
     },
     {
       title: "Vue Components",
       description: "Progressive framework components for modern web",
       icon: "💚",
-      color: "from-emerald-500/50 to-green-400/50"
+      gradient: "from-emerald-500 to-green-400",
+      shadowColor: "rgba(16, 185, 129, 0.5)"
     },
     {
       title: "Svelte Components",
       description: "Cybernetically enhanced web components",
       icon: "🔥",
-      color: "from-orange-500/50 to-red-400/50"
+      gradient: "from-orange-500 to-red-400",
+      shadowColor: "rgba(249, 115, 22, 0.5)"
     },
     {
       title: "Angular Components",
       description: "Enterprise-ready Angular UI components",
       icon: "🅰️",
-      color: "from-red-500/50 to-pink-400/50"
+      gradient: "from-red-500 to-pink-400",
+      shadowColor: "rgba(239, 68, 68, 0.5)"
     },
     {
       title: "Solid Components",
       description: "Simple and performant component library",
       icon: "💎",
-      color: "from-indigo-500/50 to-purple-400/50"
+      gradient: "from-indigo-500 to-purple-400",
+      shadowColor: "rgba(99, 102, 241, 0.5)"
     }
   ];
 
@@ -93,28 +99,24 @@ const ComponentLibrary = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#1A1F2C] text-foreground">
+    <div className="min-h-screen section-gradient text-foreground">
       {/* Mouse follower */}
       <motion.div
-        className="fixed w-64 h-64 rounded-full pointer-events-none z-0 opacity-20 bg-primary"
+        className="cursor-glow"
         style={{
           x: mouseXSpring,
           y: mouseYSpring,
-          translateX: "-50%",
-          translateY: "-50%",
-          filter: "blur(50px)",
         }}
       />
 
       <div className="relative z-10">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="max-w-6xl mx-auto p-6 space-y-6"
         >
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+            <h1 className="text-4xl font-bold gradient-text">
               Component Library
             </h1>
             <div className="relative w-full md:w-64">
@@ -127,7 +129,6 @@ const ComponentLibrary = () => {
             </div>
           </div>
 
-          {/* Featured Components Grid */}
           <motion.div
             variants={container}
             initial="hidden"
@@ -139,14 +140,18 @@ const ComponentLibrary = () => {
                 key={index}
                 variants={item}
                 whileHover={{ 
-                  scale: 1.02, 
+                  scale: 1.02,
                   transition: { duration: 0.2 },
                 }}
-                className="relative group"
+                className="relative group component-card"
+                style={{
+                  '--gradient-start': component.shadowColor,
+                  '--gradient-end': 'transparent'
+                } as React.CSSProperties}
               >
-                <Card className="overflow-hidden border-0">
-                  <CardContent className="p-6 bg-black/40 backdrop-blur-xl relative">
-                    <div className={`absolute inset-0 bg-gradient-to-br opacity-10 group-hover:opacity-20 transition-opacity duration-500 ${component.color}`} />
+                <Card className="overflow-hidden border-0 bg-black/40 backdrop-blur-xl">
+                  <CardContent className="p-6 relative">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${component.gradient} opacity-10 group-hover:opacity-20 transition-opacity duration-500`} />
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center space-x-3">
                         <div className="text-2xl">{component.icon}</div>
@@ -159,7 +164,6 @@ const ComponentLibrary = () => {
                     </p>
                   </CardContent>
                 </Card>
-                <div className="absolute -inset-[1px] bg-gradient-to-r from-primary/50 to-secondary/50 rounded-lg opacity-0 group-hover:opacity-100 -z-10 blur-sm transition-opacity duration-500" />
               </motion.div>
             ))}
           </motion.div>
@@ -197,7 +201,6 @@ const ComponentLibrary = () => {
             </ScrollArea>
           </div>
 
-          {/* Contact Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -244,7 +247,6 @@ const ComponentLibrary = () => {
             </div>
           </motion.div>
 
-          {/* Footer */}
           <footer className="mt-24 py-8 border-t border-border">
             <div className="max-w-6xl mx-auto text-center">
               <p className="text-sm text-muted-foreground">

@@ -36,6 +36,8 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
+    background: linear-gradient(to bottom, #1A1F2C 0%, #12151c 100%);
+    min-height: 100vh;
   }
 }
 
@@ -63,6 +65,34 @@
   animation: float 6s ease-in-out infinite;
 }
 
+.cursor-glow {
+  pointer-events: none;
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle at center, rgba(155, 135, 245, 0.15) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.cursor-glow.active {
+  opacity: 1;
+}
+
+.card-hover-effect {
+  transition: all 0.3s ease;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-5px);
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+}
+
 @keyframes float {
   0%, 100% {
     transform: translateY(0);
@@ -70,4 +100,34 @@
   50% {
     transform: translateY(-10px);
   }
+}
+
+.component-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.component-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  border-radius: inherit;
+  filter: blur(8px);
+}
+
+.component-card:hover::before {
+  opacity: 0.7;
+}
+
+.hero-gradient {
+  background: linear-gradient(180deg, #1A1F2C 0%, #12151c 100%);
+}
+
+.section-gradient {
+  background: linear-gradient(180deg, #12151c 0%, #0a0c11 100%);
 }
